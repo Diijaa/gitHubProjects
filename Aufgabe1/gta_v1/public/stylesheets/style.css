@@ -110,7 +110,7 @@ a {
 
 /* ... your code here ... */
 .header {
-  background-color: #c9c2c2;
+  background-color: #EFEFEF;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -183,11 +183,13 @@ input {
 /* ... your code here ... */
 .discovery__results li{
   color: #00B7FF;
+  background-color: #EFEFEF;
   border: 1px solid #ccc; /* Add border */
   padding: 10px; /* Add padding */
-  margin: 20px; /* Add margin between list items */
+  margin-top: 20px; /* Add margin between list items */
   width: fit-content; /* Set width to fill parent container */
   display: block;
+  
   
 }
 
@@ -222,8 +224,10 @@ input {
 
 /* ... your code here ... */
 .footer{
-  background-color: #c9c2c2;
-
+  background-color: #EFEFEF;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  padding-left: 35px
 
 
 }
