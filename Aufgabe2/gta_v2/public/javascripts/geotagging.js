@@ -123,10 +123,23 @@ class MapManager {
 function updateLocation() {
     LocationHelper.findLocation((locationHelper) => {
         // Success callback: Update the input fields with the location data
-        document.querySelector('#tagging-form input[name="latitude"]').value = locationHelper.latitude;
-        document.querySelector('#tagging-form input[name="longitude"]').value = locationHelper.longitude;
-        document.querySelector('#discovery-form input[name="latitude"]').value = locationHelper.latitude;
-        document.querySelector('#discovery-form input[name="longitude"]').value = locationHelper.longitude;
+        document.querySelector('#tagging_latitude_line input[name="Latitude"]').value = locationHelper.latitude;
+        document.querySelector('#tagging_longitude_line input[name="Longitude"]').value = locationHelper.longitude;
+        document.querySelector('#discovery_latitude input[name="Latitude"]').value = locationHelper.latitude;
+        document.querySelector('#discovery_longitude input[name="Longitude"]').value = locationHelper.longitude;
+            
+        // Initialize the map with the current location
+            const mapManager = new MapManager();
+            mapManager.initMap(locationHelper.latitude, locationHelper.longitude);
+            mapManager.updateMarkers(locationHelper.latitude, locationHelper.longitude);
+    
+            // Remove the placeholder image and caption
+            const imgElement = document.querySelector('img'); // Adjust the selector as needed
+            const captionElement = document.querySelector('p'); // Adjust the selector as needed
+    
+            if (imgElement) imgElement.remove();
+            if (captionProperty) captionElement.remove();
+    
     }, (error) => {
         // Error handling: Log to console or display an alert
         console.error('Error retrieving location:', error.message);
@@ -135,7 +148,8 @@ function updateLocation() {
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", updateLocation);
+// document.addEventListener("DOMContentLoaded", updateLocation);
+
 
 
 
