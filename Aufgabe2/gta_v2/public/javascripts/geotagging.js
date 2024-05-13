@@ -123,11 +123,12 @@ class MapManager {
 function updateLocation() {
     LocationHelper.findLocation((locationHelper) => {
         // Success callback: Update the input fields with the location data
-        document.querySelector('#tagging_latitude_line input[name="Latitude"]').value = locationHelper.latitude;
-        document.querySelector('#tagging_longitude_line input[name="Longitude"]').value = locationHelper.longitude;
-        document.querySelector('#discovery_latitude input[name="Latitude"]').value = locationHelper.latitude;
-        document.querySelector('#discovery_longitude input[name="Longitude"]').value = locationHelper.longitude;
-            
+        document.querySelector('#tagging_latitude_line').value = locationHelper.latitude;
+        document.querySelector('#tagging_longitude_line ').value = locationHelper.longitude;
+        document.querySelector('#discovery_latitude ').value = locationHelper.latitude;
+        document.querySelector('#discovery_longitude').value = locationHelper.longitude;
+        console.log("test");   
+
         // Initialize the map with the current location
             const mapManager = new MapManager();
             mapManager.initMap(locationHelper.latitude, locationHelper.longitude);
@@ -138,7 +139,7 @@ function updateLocation() {
             const captionElement = document.querySelector('p'); // Adjust the selector as needed
     
             if (imgElement) imgElement.remove();
-            if (captionProperty) captionElement.remove();
+            if (captionElement) captionElement.remove();
     
     }, (error) => {
         // Error handling: Log to console or display an alert
@@ -152,7 +153,6 @@ function updateLocation() {
 
 
 
-
 // 1. Koordinaten auslesen und eintragen in die Formulare
 // 2. alte Karte löschen
 // 3. neue Karte anzeigen
@@ -160,5 +160,6 @@ function updateLocation() {
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    // alert("Please change the script 'geotagging.js'");
+    updateLocation();
 });
