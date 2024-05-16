@@ -121,13 +121,12 @@ class MapManager {
  * A function to retrieve the current location and update the input fields for latitude and longitude.
  */
 function updateLocation() {
-    LocationHelper.findLocation((locationHelper) => {
+    LocationHelper.findLocation(function (locationHelper)  {
         // Success callback: Update the input fields with the location data
         document.querySelector('#tagging_latitude_line').value = locationHelper.latitude;
         document.querySelector('#tagging_longitude_line ').value = locationHelper.longitude;
         document.querySelector('#discovery_latitude ').value = locationHelper.latitude;
         document.querySelector('#discovery_longitude').value = locationHelper.longitude;
-        console.log("test");   
 
         // Initialize the map with the current location
             const mapManager = new MapManager();
@@ -135,8 +134,9 @@ function updateLocation() {
             mapManager.updateMarkers(locationHelper.latitude, locationHelper.longitude);
     
             // Remove the placeholder image and caption
-            const imgElement = document.querySelector('img'); // Adjust the selector as needed
-            const captionElement = document.querySelector('p'); // Adjust the selector as needed
+            const imgElement = document.getElementById(`mapView`); // Adjust the selector as needed
+            const captionElement = document.getElementById('span'); // Adjust the selector as needed
+        
     
             if (imgElement) imgElement.remove();
             if (captionElement) captionElement.remove();
@@ -147,15 +147,6 @@ function updateLocation() {
         alert('Error retrieving location. Please ensure location services are enabled.');
     });
 }
-
-// Wait for the page to fully load its DOM content, then call updateLocation
-// document.addEventListener("DOMContentLoaded", updateLocation);
-
-
-
-// 1. Koordinaten auslesen und eintragen in die Formulare
-// 2. alte Karte löschen
-// 3. neue Karte anzeigen
 
 
 // Wait for the page to fully load its DOM content, then call updateLocation
