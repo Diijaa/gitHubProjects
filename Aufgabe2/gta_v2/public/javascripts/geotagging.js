@@ -29,15 +29,15 @@ class LocationHelper {
         return this.#longitude;
     }
 
-   /**
-    * Create LocationHelper instance if coordinates are known.
-    * @param {string} latitude 
-    * @param {string} longitude 
-    */
-   constructor(latitude, longitude) {
-       this.#latitude = (parseFloat(latitude)).toFixed(5);
-       this.#longitude = (parseFloat(longitude)).toFixed(5);
-   }
+    /**
+     * Create LocationHelper instance if coordinates are known.
+     * @param {string} latitude 
+     * @param {string} longitude 
+     */
+    constructor(latitude, longitude) {
+        this.#latitude = (parseFloat(latitude)).toFixed(5);
+        this.#longitude = (parseFloat(longitude)).toFixed(5);
+    }
 
     /**
      * The 'findLocation' method requests the current location details through the geolocation API.
@@ -62,7 +62,7 @@ class LocationHelper {
             // Pass the locationHelper object to the callback.
             callback(helper);
         }, (error) => {
-           alert(error.message)
+            alert(error.message)
         });
     }
 }
@@ -87,7 +87,8 @@ class MapManager {
         var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors'}).addTo(this.#map);
+            attribution: '&copy; ' + mapLink + ' Contributors'
+        }).addTo(this.#map);
         this.#markers = L.layerGroup().addTo(this.#map);
     }
 
@@ -104,9 +105,9 @@ class MapManager {
             .bindPopup("Your Location")
             .addTo(this.#markers);
         for (const tag of tags) {
-            L.marker([tag.location.latitude,tag.location.longitude])
+            L.marker([tag.location.latitude, tag.location.longitude])
                 .bindPopup(tag.name)
-                .addTo(this.#markers);  
+                .addTo(this.#markers);
         }
     }
 }
@@ -121,7 +122,7 @@ class MapManager {
  * A function to retrieve the current location and update the input fields for latitude and longitude.
  */
 function updateLocation() {
-    LocationHelper.findLocation(function (locationHelper)  {
+    LocationHelper.findLocation(function (locationHelper) {
         // Success callback: Update the input fields with the location data
         document.querySelector('#tagging_latitude_line').value = locationHelper.latitude;
         document.querySelector('#tagging_longitude_line ').value = locationHelper.longitude;
@@ -129,18 +130,18 @@ function updateLocation() {
         document.querySelector('#discovery_longitude').value = locationHelper.longitude;
 
         // Initialize the map with the current location
-            const mapManager = new MapManager();
-            mapManager.initMap(locationHelper.latitude, locationHelper.longitude);
-            mapManager.updateMarkers(locationHelper.latitude, locationHelper.longitude);
-    
-            // Remove the placeholder image and caption
-            const imgElement = document.getElementById(`mapView`); // Adjust the selector as needed
-            const captionElement = document.getElementById('span'); // Adjust the selector as needed
-        
-    
-            if (imgElement) imgElement.remove();
-            if (captionElement) captionElement.remove();
-    
+        const mapManager = new MapManager();
+        mapManager.initMap(locationHelper.latitude, locationHelper.longitude);
+        mapManager.updateMarkers(locationHelper.latitude, locationHelper.longitude);
+
+        // Remove the placeholder image and caption
+        const imgElement = document.getElementById(`mapView`); // Adjust the selector as needed
+        const captionElement = document.getElementById('span'); // Adjust the selector as needed
+
+
+        if (imgElement) imgElement.remove();
+        if (captionElement) captionElement.remove();
+
     }, (error) => {
         // Error handling: Log to console or display an alert
         console.error('Error retrieving location:', error.message);

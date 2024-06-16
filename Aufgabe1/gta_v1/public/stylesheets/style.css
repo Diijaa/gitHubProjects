@@ -239,8 +239,14 @@ input {
 /* ... your code here ... */
 @media only screen and (max-width: 850px) {
   .main {
-      width: 45%; /* Adjust width for medium screens */
+     
       display: flex; /* Use flexbox layout */
       flex-direction: column; /* Stack items vertically */
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+    
+      
+      
   }
 }
