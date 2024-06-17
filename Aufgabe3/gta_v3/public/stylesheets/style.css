@@ -114,6 +114,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 
 }
 
@@ -205,6 +206,12 @@ input {
 
 }
 
+#map {
+  height: 600px;
+  width: 600px;
+   /* Set a specific height for the map */
+}
+
 .main__discovery {
   margin: 20px;
 
@@ -220,6 +227,7 @@ input {
 
 
 }
+
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
