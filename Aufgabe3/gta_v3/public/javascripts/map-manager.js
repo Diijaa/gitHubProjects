@@ -29,7 +29,7 @@
     * @param {number} longitude The map center longitude
     * @param {number} zoom The map zoom, defaults to 18
     */
-    initMap(latitude, longitude, zoom = 18) {
+   initMap(latitude, longitude, zoom = 18) {
         // set up dynamic Leaflet map
         this.#map = L.map('map').setView([latitude, longitude], zoom);
         var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
@@ -37,8 +37,10 @@
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; ' + mapLink + ' Contributors'}).addTo(this.#map);
         this.#markers = L.layerGroup().addTo(this.#map);
-    }
+    } 
 
+
+    
     /**
     * Update the Markers of a Leaflet map
     * @param {number} latitude The map center latitude
@@ -55,6 +57,13 @@
             L.marker([tag.location.latitude,tag.location.longitude], { icon: this.#defaultIcon })
                 .bindPopup(tag.name)
                 .addTo(this.#markers);  
+        }
+    }
+
+    addMarker(latitude, longitude, name) {
+        const marker = L.marker([latitude, longitude], { icon: this.#defaultIcon }).addTo(this.#markers);
+        if (name) {
+             marker.bindPopup(name);
         }
     }
 }
